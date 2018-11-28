@@ -34,6 +34,50 @@ namespace Final_Capstone.Models
             return Ok(car);
         }
 
+        [HttpGet]
+        public List<Car> GetModel(string model)
+        {
+            List<Car> carsByModel = new List<Car>();
+            var query = db.Cars.Where(c => c.Model.Contains(model));
+            carsByModel = query.ToList();
+          
+            return carsByModel;
+        }
+
+        [HttpGet]
+        public List<Car> GetMake(string make)
+        {
+            List<Car> carsByMake = new List<Car>();
+
+            var query = db.Cars.Where(c => c.Make.Contains(make));
+            carsByMake = query.ToList();
+
+            return carsByMake;
+        }
+
+        [HttpGet]
+        public List<Car> GetYear(int year)
+        {
+            List<Car> carsByYear = new List<Car>();
+
+            var query = db.Cars.Where(c => c.Year == year);
+            carsByYear = query.ToList();
+
+            return carsByYear;
+        }
+
+        [HttpGet]
+        public List<Car> GetColor(string color)
+        {
+            List<Car> carsByColor = new List<Car>();
+
+            var query = db.Cars.Where(c => c.Color.Contains(color));
+            carsByColor = query.ToList();
+
+            return carsByColor;
+        }
+
+
         // PUT: api/Cars/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCar(int id, Car car)
